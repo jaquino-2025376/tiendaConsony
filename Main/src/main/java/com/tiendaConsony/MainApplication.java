@@ -1,13 +1,17 @@
 package com.tiendaConsony;
 
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class MainApplication {
+public class MainApplication implements CommandLineRunner {
 
 	public static void main(String[] args) {
 		SpringApplication.run(MainApplication.class, args);
 	}
 
+    public void run(String... args) throws Exception{
+        System.out.println("Api funcionando");
+    }
 }
