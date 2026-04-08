@@ -1,40 +1,53 @@
 package com.tiendaConsony.controller;
 
-import ch.qos.logback.core.model.Model;
-import com.tiendaConsony.entity.Usuario;
-import com.tiendaConsony.service.UsuarioService;
+import jakarta.servlet.http.HttpSession;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
-
-@RestController
+@Controller
 public class LoginController {
 
-    private final UsuarioService usuarioService;
-
-    public LoginController(UsuarioService usuarioService) {
-        this.usuarioService = usuarioService;
+    // Página raíz: redirige a /login
+    @GetMapping("/")
+    public String inicio() {
+        return "redirect:/login";
     }
 
+    // Mostrar formulario de login
     @GetMapping("/login")
     public String mostrarLogin() {
-        return "login"; // login.html
+        return "login"; // nombre de tu HTML Thymeleaf: login.html
     }
 
+    // Procesar login
     @PostMapping("/login")
-    public String procesarLogin(@RequestParam String username,
-                                @RequestParam String contrasena,
-                                Model model) {
+    public String login(@RequestParam String usuario,
+                        @RequestParam String password,
+                        HttpSession session,
+                        Model model) {
 
-        List<Usuario> usuarios = usuarioService.getAllUsuario();
+        String userCorrecto = "admin";
+        String passwordCorrecto = "1234";
 
-        return username;
+        if (usuario.equals(userCorrecto) && password.equals(passwordCorrecto)) {
+            // Guardar sesión
+            session.setAttribute("usuarioLogeado", usuario);
+            return "redirect:/home-login";
+        } else {
+            model.addAttribute("error", "Usuario o contraseña incorrecta");
+            return "login"; // regresar al login con error
+        }
     }
-    @GetMapping("/inicio")
-    public String mostrarInicio() {
-        return "inicio"; // inicio.html
-}
+
+    // Página protegida
+    @GetMapping("/home-login")
+    public String mostrarHome(HttpSession session) {
+        if (session.getAttribute("usuarioLogeado") == null) {
+            return "redirect:/login";
+        }
+        return "inicio"; // nombre de tu página después de login
+    }
 }
