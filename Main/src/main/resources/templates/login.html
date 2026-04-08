@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Tienda Consony</title>
+    <link rel="stylesheet" href="../static/styleLogin.css">
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-box">
+            <div class="header">
+                <h2>Inicio de Sesión</h2>
+                <p>Tienda Consony</p>
+            </div>
+            
+            <form onsubmit="return login(event)">
+                
+                <div class="form__group">
+                    <input type="email" class="form__field" id="email" placeholder="Correo" required>
+                    <label for="email" class="form__label">Correo Electrónico</label>
+                </div>
+
+                <div class="form__group">
+                    <input type="password" class="form__field" id="password" placeholder="Contraseña" required>
+                    <label for="password" class="form__label">Contraseña</label>
+                </div>
+
+                <button type="submit" class="login-btn">Ingresar a la tienda</button>
+
+                <p id="mensaje"></p>
+            </form>
+        </div>
+    </div>
+
+<script>
+function login(event) {
+    event.preventDefault();
+
+    const user = document.getElementById("email").value;
+    const pass = document.getElementById("password").value;
+
+    const userQuemado = "admin@tienda.com";
+    const passQuemado = "1234";
+
+    if(user === userQuemado && pass === passQuemado){
+            //redireccion
+        window.location.href = "inicio.html";
+    } else {
+        const mensaje = document.getElementById("mensaje");
+        mensaje.innerText = "Credenciales incorrectas";
+    }
+
+    return false;
+}
+</script>
+
+</body>
+</html>

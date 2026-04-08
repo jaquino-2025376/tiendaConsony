@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Inicio - Tienda Consony</title>
+    <link rel="stylesheet" href="../static/styleInicio.css">
+</head>
+<body>
+
+<header class="navbar">
+    <h1>Tienda Consony</h1>
+    <button onclick="logout()">Cerrar sesión</button>
+</header>
+
+<main class="container">
+
+    <h2>Panel de Administración</h2>
+    <p>Gestiona toda la tienda desde aquí</p>
+
+    <div class="cards">
+
+        <!-- PRODUCTOS -->
+        <div class="card">
+            <h3>📦 Productos</h3>
+            <p>Agregar, editar y eliminar productos</p>
+            <button onclick="ir('productos.html')">Gestionar</button>
+        </div>
+
+        <!-- CLIENTES -->
+        <div class="card">
+            <h3>👤 Clientes</h3>
+            <p>Administrar clientes registrados</p>
+            <button onclick="ir('clientes.html')">Gestionar</button>
+        </div>
+
+        <!-- VENTAS -->
+        <div class="card">
+            <h3>💰 Ventas</h3>
+            <p>Ver historial de ventas</p>
+            <button onclick="ir('ventas.html')">Ver ventas</button>
+        </div>
+
+        <!-- USUARIOS -->
+        <div class="card">
+            <h3>🔐 Usuarios</h3>
+            <p>Control de accesos y roles</p>
+            <button onclick="ir('usuarios.html')">Administrar</button>
+        </div>
+
+    </div>
+
+</main>
+
+<script>
+function logout() {
+    window.location.replace("login.html");
+}
+
+function ir(pagina) {
+    window.location.href = pagina;
+}
+</script>
+
+</body>
+</html>
