@@ -8,7 +8,7 @@
 <body>
     <header class="navbar">
         <h1>Productos</h1>
-        <button type="button">Regresar</button>
+        <button type="button" onclick="regresar()">Regresar</button>
     </header>
 
     <section class="formulario">
@@ -62,5 +62,14 @@
             </tbody>
         </table>
     </section>
+        <script>
+    function regresar() {
+    window.location.replace("inicio.html");
+    }
+
+    function ir(pagina) {
+    window.location.href = pagina;
+    }
+</script>
 </body>
 </html>
