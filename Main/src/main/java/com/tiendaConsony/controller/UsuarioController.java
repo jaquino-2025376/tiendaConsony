@@ -2,48 +2,69 @@ package com.tiendaConsony.controller;
 
 import com.tiendaConsony.entity.Usuario;
 import com.tiendaConsony.service.UsuarioService;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
-@RequestMapping("/api/usuario")
+@Controller
 public class UsuarioController {
 
-    private final UsuarioService service;
+    @Autowired
+    private UsuarioService service;
 
-    public UsuarioController(UsuarioService service) {
-        this.service = service;
+    @GetMapping("/login")
+    public String login() {
+        return "login";
     }
 
-    @GetMapping
-    public List<Usuario> getAllUsuarios() {
-        return service.getAllUsuario();
+    @PostMapping("/login")
+    public String validar(@RequestParam String username,
+                          @RequestParam String contrasena,
+                          Model model) {
+
+        Usuario u = service.login(username, contrasena);
+
+        if (u != null) {
+            return "redirect:/inicio";
+        } else {
+            model.addAttribute("error", "Credenciales Incorrectas");
+            return "login";
+        }
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Object> getUsuarioById(@PathVariable int id) {
-        Usuario searchedUsuario = service.getUsuarioById(id);
-        return new ResponseEntity<>(searchedUsuario, HttpStatus.OK);
+    @GetMapping("/registro")
+    public String registro() {
+        return "registro";
     }
 
-    @PostMapping
-    public ResponseEntity<Object> createUsuario(@RequestBody Usuario usuario) {
-        Usuario createdUsuario = service.saveUsuario(usuario);
-        return new ResponseEntity<>(createdUsuario, HttpStatus.CREATED);
+    @PostMapping("/registro")
+    public String guardar(@RequestParam String username,
+                          @RequestParam String contrasena,
+                          Model model) {
+
+        Usuario u = service.registrar(username, contrasena);
+
+        if (u == null) {
+            model.addAttribute("error", "Usuario ya existente");
+            return "registro";
+        }
+
+        return "redirect:/login";
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Object> updateUsuario(@PathVariable int id, @RequestBody Usuario usuario) {
-        Usuario updatedUsuario = service.updateUsuario(id, usuario);
-        return new ResponseEntity<>(updatedUsuario, HttpStatus.OK);
+    @GetMapping("/lista")
+    public String listar(Model model) {
+        List<Usuario> lista = service.listar();
+        model.addAttribute("usuarios", lista);
+        return "listar";
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Object> deleteUsuario(@PathVariable int id) {
-        service.deleteUsuario(id);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    @GetMapping("/eliminar/{id}")
+    public String eliminar(@PathVariable int id) {
+        service.eliminar(id);
+        return "redirect:/lista";
     }
 }
