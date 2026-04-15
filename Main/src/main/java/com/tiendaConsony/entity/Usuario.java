@@ -8,8 +8,8 @@ public class Usuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_usuario")
-    private Integer idUsuario;
+    @Column(name = "codigo_usuario")
+    private Integer codigoUsuario;
 
     @Column(name = "username")
     private String username;
@@ -21,11 +21,11 @@ public class Usuario {
     private String rol;
 
     public Integer getIdUsuario() {
-        return idUsuario;
+        return codigoUsuario;
     }
 
     public void setIdUsuario(Integer idUsuario) {
-        this.idUsuario = idUsuario;
+        this.codigoUsuario = idUsuario;
     }
 
     public String getUsername() {
