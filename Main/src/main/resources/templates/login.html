@@ -1,38 +1,115 @@
 <!DOCTYPE html>
-<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Tienda Consony</title>
-    <link rel="stylesheet" href="../styleLogin.css">
+    <title>Login</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            height: 100vh;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .card {
+            display: flex;
+            width: 700px;
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .left {
+            width: 40%;
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .left img {
+            width: 120px;
+        }
+
+        .right {
+            width: 60%;
+            padding: 40px;
+            text-align: center;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            border-radius: 10px;
+            border: none;
+            background: #4CAF50;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .switch {
+            margin-top: 15px;
+        }
+
+        .switch a {
+            text-decoration: none;
+            color: #2575fc;
+            font-size: 14px;
+        }
+
+        .error {
+            background: #ff4b5c;
+            color: white;
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+    </style>
 </head>
 <body>
-    <div class="login-container">
-        <div class="login-box">
-            <div class="header">
-                <h2>Inicio de Sesión</h2>
-                <p>Tienda Consony</p>
-            </div>
-            
-            <!-- Formulario apuntando al backend -->
-            <form action="/login" method="post">
-                <div class="form__group">
-                    <input type="text" class="form__field" name="usuario" placeholder="Usuario" required>
-                    <label for="usuario" class="form__label">Usuario</label>
-                </div>
 
-                <div class="form__group">
-                    <input type="password" class="form__field" name="password" placeholder="Contraseña" required>
-                    <label for="password" class="form__label">Contraseña</label>
-                </div>
+<div class="card">
 
-                <button type="submit" class="login-btn">Ingresar a la tienda</button>
-
-                <p id="mensaje">
-                    <span th:text="${error}"></span>
-                </p>
-            </form>
-        </div>
+    <div class="left">
+        <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png">
     </div>
+
+    <div class="right">
+
+        <h2>Iniciar Sesión</h2>
+
+        <div th:if="${error}" class="error">
+            <span th:text="${error}"></span>
+        </div>
+
+        <form th:action="@{/login}" method="post">
+            <input type="text" name="username" placeholder="Usuario" required>
+            <input type="password" name="contrasena" placeholder="Contraseña" required>
+            <button type="submit">Ingresar</button>
+        </form>
+
+        <div class="switch">
+            <a th:href="@{/registro}">¿No tienes cuenta? Regístrate</a>
+        </div>
+
+    </div>
+
+</div>
+
 </body>
 </html>
