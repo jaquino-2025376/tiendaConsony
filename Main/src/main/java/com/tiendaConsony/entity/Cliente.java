@@ -8,8 +8,8 @@ public class Cliente {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_cliente")
-    private Integer idProducto;
+    @Column(name = "codigo_cliente")
+    private Integer codigoProducto;
 
     @Column(name = "nombre_cliente")
     private String nombreCliente;
@@ -27,11 +27,11 @@ public class Cliente {
     private String direccionCliente;
 
     public Integer getIdProducto() {
-        return idProducto;
+        return codigoProducto;
     }
 
     public void setIdProducto(Integer idProducto) {
-        this.idProducto = idProducto;
+        this.codigoProducto = idProducto;
     }
 
     public String getNombreCliente() {
