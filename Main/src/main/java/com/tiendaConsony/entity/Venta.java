@@ -9,8 +9,8 @@ public class Venta {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_venta")
-    private Integer idVenta;
+    @Column(name = "codigo_venta")
+    private Integer codigoVenta;
 
     @Column(name = "fecha_venta")
     private LocalDateTime fechaVenta;
@@ -26,11 +26,11 @@ public class Venta {
 
 
     public Integer getIdVenta() {
-        return idVenta;
+        return codigoVenta;
     }
 
     public void setIdVenta(Integer idVenta) {
-        this.idVenta = idVenta;
+        this.codigoVenta = idVenta;
     }
 
     public LocalDateTime getFechaVenta() {
