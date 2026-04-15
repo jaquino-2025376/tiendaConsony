@@ -1,82 +1,106 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Clientes - CRUD</title>
-    <!-- Aquí enlazas tu CSS externo -->
-    <link rel="stylesheet" href="../static/styleEntidades.css">
+    <title>Clientes</title>
+    <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-regular-straight/css/uicons-regular-straight.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" th:href="@{/styleEntidades.css}">
 </head>
 <body>
-    <header class="navbar">
-        <h1>Clientes</h1>
-        <button type="button" onclick="regresar()">Regresar</button>
-    </header>
 
-    <section class="formulario">
-        <h2>Agregar Cliente</h2>
-        <form action="#" method="post">
-            <label for="nombre">Nombre:</label>
-            <input type="text" id="nombre" name="nombre" placeholder="Nombre del cliente">
+<aside class="sidebar">
+    <div class="sidebar-header">
+        <i class="fas fa-store"></i> Sistema Ventas
+    </div>
+    <nav>
+        <ul>
+            <li>
+                <a class="active" th:href="@{/inicio}">
+                    <i class="fas fa-chart-line"></i> Inicio
+                </a>
+            </li>
 
-            <label for="apellido">Apellido:</label>
-            <input type="text" id="apellido" name="apellido" placeholder="Apellido del cliente">
+            <li>
+                <a th:href="@{/venta}">
+                    <i class="fas fa-shopping-cart"></i> Ventas
+                </a>
+            </li>
 
-            <label for="dpi">DPI:</label>
-            <input type="text" id="dpi" name="dpi" placeholder="DPI del cliente">
+            <li>
+                <a th:href="@{/producto}">
+                    <i class="fas fa-box"></i> Productos
+                </a>
+            </li>
 
-            <label for="direccion">Dirección:</label>
-            <input type="text" id="direccion" name="direccion" placeholder="Dirección del cliente">
+            <li>
+                <a th:href="@{/cliente}">
+                    <i class="fas fa-users"></i> Clientes
+                </a>
+            </li>
 
-            <button type="submit">Agregar</button>
-        </form>
-    </section>
+            <li>
+                <a th:href="@{/usuario}">
+                    <i class="fas fa-user-shield"></i> Usuarios
+                </a>
+            </li>
 
-    <section class="lista-clientes">
-        <h2>Lista de Clientes</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>Nombre</th>
-                    <th>Apellido</th>
-                    <th>DPI</th>
-                    <th>Dirección</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- Ejemplos -->
-                <tr>
-                    <td>Juan</td>
-                    <td>Pérez</td>
-                    <td>201574893001</td>
-                    <td>Zona 15</td>
-                    <td>
-                        <button type="button">Editar</button>
-                        <button type="button">Eliminar</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Kevin</td>
-                    <td>Larios</td>
-                    <td>2352441545154</td>
-                    <td>Zona 2</td>
-                    <td>
-                        <button type="button">Editar</button>
-                        <button type="button">Eliminar</button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </section>
+            <li>
+                <a th:href="@{/detalleVenta}">
+                    <i class="fas fa-file-invoice"></i> Detalle Venta
+                </a>
+            </li>
 
-    <script>
-function regresar() {
-    window.location.replace("inicio.html");
-}
+            <li>
+                <a th:href="@{/logout}">
+                    <i class="fas fa-sign-out-alt"></i> Cerrar sesión
+                </a>
+            </li>
+        </ul>
+    </nav>
+</aside>
 
-function ir(pagina) {
-    window.location.href = pagina;
-}
-</script>
+<div class="container">
+    <div>
+        <a th:href="@{/agregarCliente}" class="btn">Agregar Cliente</a>
+    </div>
+
+    <table>
+        <thead>
+        <tr>
+            <th>DPI</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Dirección</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>2145786230010</td>
+            <td>Luis</td>
+            <td>Morales</td>
+            <td>Zona 7, Cuidad Guatemala</td>
+            <td class="estado-activo">Activo</td>
+            <td class="acciones">
+                <a th:href="@{/editarCliente}" class="btn-editar"><i class="fi fi-rs-pencil"></i></a>
+                <a class="btn-eliminar"><i class="fi fi-rs-trash"></i></a>
+            </td>
+        </tr>
+        <tr>
+            <td>7894561234870</td>
+            <td>Carlos</td>
+            <td>Villalobos</td>
+            <td>Trebol</td>
+            <td class="estado-inactivo">Inactivo</td>
+            <td class="acciones">
+                <a th:href="@{/editarCliente}" class="btn-editar"><i class="fi fi-rs-pencil"></i></a>
+                <a class="btn-eliminar"><i class="fi fi-rs-trash"></i></a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
 </body>
 </html>
