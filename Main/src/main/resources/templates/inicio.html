@@ -1,65 +1,68 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Inicio - Tienda Consony</title>
-    <link rel="stylesheet" href="../styleInicio.css">
+    <title>Inicio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" th:href="@{/styleInicio.css}">
 </head>
 <body>
 
-<header class="navbar">
-    <h1>Tienda Consony</h1>
-    <button onclick="logout()">Cerrar sesión</button>
-</header>
-
-<main class="container">
-
-    <h2>Panel de Administración</h2>
-    <p>Gestiona toda la tienda desde aquí</p>
-
-    <div class="cards">
-
-        <!-- PRODUCTOS -->
-        <div class="card">
-            <h3>Productos</h3>
-            <p>Agregar, editar y eliminar productos</p>
-            <button onclick="ir('producto.html')">Gestionar</button>
-        </div>
-
-        <!-- CLIENTES -->
-        <div class="card">
-            <h3>Clientes</h3>
-            <p>Administrar clientes registrados</p>
-            <button onclick="ir('cliente.html')">Gestionar</button>
-        </div>
-
-        <!-- VENTAS -->
-        <div class="card">
-            <h3 Ventas</h3>
-            <p>Ver historial de ventas</p>
-            <button onclick="ir('venta.html')">Ver ventas</button>
-        </div>
-
-        <!-- USUARIOS -->
-        <div class="card">
-            <h3>Usuarios</h3>
-            <p>Control de accesos y roles</p>
-            <button onclick="ir('usuario.html')">Administrar</button>
-        </div>
-
+<aside class="sidebar">
+    <div class="sidebar-header">
+        <i class="fas fa-store"></i> TIENDA CONSONY
     </div>
+    <nav>
+        <ul>
+            <li>
+                <a class="active" th:href="@{/inicio}">
+                    <i class="fas fa-chart-line"></i> Inicio
+                </a>
+            </li>
 
-</main>
+            <li>
+                <a th:href="@{/venta}">
+                    <i class="fas fa-shopping-cart"></i> Ventas
+                </a>
+            </li>
 
-<script>
-function logout() {
-    window.location.replace("login.html");
-}
+            <li>
+                <a th:href="@{/producto}">
+                    <i class="fas fa-box"></i> Productos
+                </a>
+            </li>
 
-function ir(pagina) {
-    window.location.href = pagina;
-}
-</script>
+            <li>
+                <a th:href="@{/cliente}">
+                    <i class="fas fa-users"></i> Clientes
+                </a>
+            </li>
+
+            <li>
+                <a th:href="@{/usuario}">
+                    <i class="fas fa-user-shield"></i> Usuarios
+                </a>
+            </li>
+
+            <li>
+                <a th:href="@{/detalleVenta}">
+                    <i class="fas fa-file-invoice"></i> Detalle Venta
+                </a>
+            </li>
+
+            <li>
+                <a th:href="@{/logout}">
+                    <i class="fas fa-sign-out-alt"></i> Cerrar sesión
+                </a>
+            </li>
+        </ul>
+    </nav>
+</aside>
+
+<div class="card">
+    <h1>Bienbenidos a la pagina principal</h1>
+    <p>Este es el menu principal de donde se controla todo</p>
+</div>
 
 </body>
 </html>
