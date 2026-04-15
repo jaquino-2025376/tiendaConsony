@@ -2,10 +2,9 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Clientes</title>
-    <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-regular-straight/css/uicons-regular-straight.css">
+    <title>Usuarios</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link rel="stylesheet" th:href="@{/styleEntidades.css}">
+    <link rel="stylesheet" th:href="@{/css/styleEntidades.css}">
 </head>
 <body>
 
@@ -15,71 +14,42 @@
     </div>
     <nav>
         <ul>
-            <li>
-                <a class="active" th:href="@{/inicio}">
-                    <i class="fas fa-chart-line"></i> Inicio
-                </a>
-            </li>
-
-            <li>
-                <a th:href="@{/venta}">
-                    <i class="fas fa-shopping-cart"></i> Ventas
-                </a>
-            </li>
-
-            <li>
-                <a th:href="@{/producto}">
-                    <i class="fas fa-box"></i> Productos
-                </a>
-            </li>
-
-            <li>
-                <a th:href="@{/cliente}">
-                    <i class="fas fa-users"></i> Clientes
-                </a>
-            </li>
-
-            <li>
-                <a th:href="@{/usuario}">
-                    <i class="fas fa-user-shield"></i> Usuarios
-                </a>
-            </li>
-
-            <li>
-                <a th:href="@{/detalleVenta}">
-                    <i class="fas fa-file-invoice"></i> Detalle Venta
-                </a>
-            </li>
-
-            <li>
-                <a th:href="@{/logout}">
-                    <i class="fas fa-sign-out-alt"></i> Cerrar sesión
-                </a>
-            </li>
+            <li><a th:href="@{/inicio}"><i class="fas fa-chart-line"></i> Inicio</a></li>
+            <li><a th:href="@{/venta}"><i class="fas fa-shopping-cart"></i> Ventas</a></li>
+            <li><a th:href="@{/producto}"><i class="fas fa-box"></i> Productos</a></li>
+            <li><a th:href="@{/cliente}"><i class="fas fa-users"></i> Clientes</a></li>
+            <li><a class="active" th:href="@{/lista}"><i class="fas fa-user-shield"></i> Usuarios</a></li>
+            <li><a th:href="@{/detalleVenta}"><i class="fas fa-file-invoice"></i> Detalle Venta</a></li>
+            <li><a th:href="@{/logout}"><i class="fas fa-sign-out-alt"></i> Cerrar sesión</a></li>
         </ul>
     </nav>
 </aside>
 
 <div class="container">
+    <div style="margin-bottom: 20px;">
+        <a th:href="@{/registro}" class="btn">Agregar Usuario</a>
+    </div>
+
     <table>
         <thead>
         <tr>
-            <th>Codigo de Usuario</th>
+            <th>ID</th>
             <th>Username</th>
             <th>Acciones</th>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="u : ${usuario}">
-            <td th:text="${u.codigoUsuario}"></td>
-            <td th:text="${u.username}"></td>
+        <!-- Itera la lista de usuarios -->
+        <tr th:each="usuario : ${usuarios}">
+            <td th:text="${usuario.id}"></td>
+            <td th:text="${usuario.username}"></td>
             <td class="acciones">
-                <a th:href="@{/usuario/editarUsuario}" class="btn-editar"><i class="fi fi-rs-pencil"></i></a>
-                <a th:href="@{'/eliminar/' + ${u.codigoUsuario}}" class="btn-eliminar"><i class="fi fi-rs-trash"></i></a>
+                <a th:href="@{'/eliminar/' + ${usuario.id}}" class="btn-eliminar"><i class="fi fi-rs-trash"></i></a>
             </td>
         </tr>
         </tbody>
     </table>
 </div>
+
 </body>
 </html>
