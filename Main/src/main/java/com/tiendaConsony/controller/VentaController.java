@@ -4,12 +4,13 @@ import com.tiendaConsony.entity.Venta;
 import com.tiendaConsony.service.VentaService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
-@RequestMapping("/api/venta")
+@Controller
+@RequestMapping("/venta")
 public class VentaController {
 
     private final VentaService service;
