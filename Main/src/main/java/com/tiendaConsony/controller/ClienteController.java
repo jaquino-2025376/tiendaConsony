@@ -1,49 +1,56 @@
 package com.tiendaConsony.controller;
 
+
 import com.tiendaConsony.entity.Cliente;
 import com.tiendaConsony.service.ClienteService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/cliente")
+@RequestMapping("/api/clientes")
 public class ClienteController {
+    public final ClienteService clienteService;
 
-    private final ClienteService service;
-
-    public ClienteController(ClienteService service) {
-        this.service = service;
+    public ClienteController(ClienteService clienteService) {
+        this.clienteService = clienteService;
     }
 
     @GetMapping
-    public List<Cliente> getAllClientes() {
-        return service.getAllCliente();
-    }
-
-    @GetMapping("/{id}")
-    public ResponseEntity<Object> getClienteById(@PathVariable int id) {
-        Cliente searchedCliente = service.getClienteById(id);
-        return new ResponseEntity<>(searchedCliente, HttpStatus.OK);
+    public List<Cliente> getAllClientes(){
+        return clienteService.getAllCliente();
     }
 
     @PostMapping
-    public ResponseEntity<Object> createCliente(@RequestBody Cliente cliente) {
-        Cliente createdCliente = service.saveCliente(cliente);
-        return new ResponseEntity<>(createdCliente, HttpStatus.CREATED);
+    public ResponseEntity<Object> createCliente(@Validated @RequestBody Cliente cliente){
+        try {
+            Cliente createCliente = clienteService.saveCliente(cliente);
+            return new ResponseEntity<>(createCliente, HttpStatus.CREATED);
+        }catch (RuntimeException e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Object> updateCliente(@PathVariable int id, @RequestBody Cliente cliente) {
-        Cliente updatedCliente = service.updateCliente(id, cliente);
-        return new ResponseEntity<>(updatedCliente, HttpStatus.OK);
+    public ResponseEntity<Object> updateClientes(@PathVariable Integer id, @Validated @RequestBody Cliente cliente){
+        try {
+            Cliente updateCliente = clienteService.updateCliente(id,cliente);
+            return new ResponseEntity<>(updateCliente,HttpStatus.OK);
+        } catch (RuntimeException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Object> deleteCliente(@PathVariable int id) {
-        service.deleteCliente(id);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    public ResponseEntity<Object> deleteClientes(@PathVariable Integer id){
+        try {
+            clienteService.deleteCliente(id);
+            return ResponseEntity.ok("Cliente eliminado");
+        } catch (RuntimeException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
 }
