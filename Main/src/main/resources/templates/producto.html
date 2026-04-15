@@ -1,75 +1,106 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Productos</title>
-    <link rel="stylesheet" href="../static/styleEntidades.css">
+    <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-regular-straight/css/uicons-regular-straight.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" th:href="@{/styleEntidades.css}">
 </head>
 <body>
-    <header class="navbar">
-        <h1>Productos</h1>
-        <button type="button" onclick="regresar()">Regresar</button>
-    </header>
+<aside class="sidebar">
+    <div class="sidebar-header">
+        <i class="fas fa-store"></i> Sistema Ventas
+    </div>
+    <nav>
+        <ul>
+            <li>
+                <a class="active" th:href="@{/inicio}">
+                    <i class="fas fa-chart-line"></i> Inicio
+                </a>
+            </li>
 
-    <section class="formulario">
-        <h2>Agregar Producto</h2>
-        <form action="#" method="post">
-            <label for="codigo_producto">Código:</label>
-            <input type="number" id="codigo_producto" name="codigo_producto" placeholder="Código del producto">
+            <li>
+                <a th:href="@{/venta}">
+                    <i class="fas fa-shopping-cart"></i> Ventas
+                </a>
+            </li>
 
-            <label for="nombre_producto">Nombre:</label>
-            <input type="text" id="nombre_producto" name="nombre_producto" placeholder="Nombre del producto">
+            <li>
+                <a th:href="@{/producto}">
+                    <i class="fas fa-box"></i> Productos
+                </a>
+            </li>
 
-            <label for="precio">Precio:</label>
-            <input type="number" step="0.01" id="precio" name="precio" placeholder="Precio del producto">
+            <li>
+                <a th:href="@{/cliente}">
+                    <i class="fas fa-users"></i> Clientes
+                </a>
+            </li>
 
-            <label for="stock">Stock:</label>
-            <input type="number" id="stock" name="stock" placeholder="Cantidad en stock">
+            <li>
+                <a th:href="@{/usuario}">
+                    <i class="fas fa-user-shield"></i> Usuarios
+                </a>
+            </li>
 
-            <label for="estado">Estado:</label>
-            <input type="number" id="estado" name="estado" placeholder="1=activo, 0=inactivo">
+            <li>
+                <a th:href="@{/detalleVenta}">
+                    <i class="fas fa-file-invoice"></i> Detalle Venta
+                </a>
+            </li>
 
-            <button type="submit">Agregar</button>
-        </form>
-    </section>
+            <li>
+                <a th:href="@{/logout}">
+                    <i class="fas fa-sign-out-alt"></i> Cerrar sesión
+                </a>
+            </li>
+        </ul>
+    </nav>
+</aside>
 
-    <section class="lista-productos">
-        <h2>Lista de Productos</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>Código</th>
-                    <th>Nombre</th>
-                    <th>Precio</th>
-                    <th>Stock</th>
-                    <th>Estado</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- Ejemplo -->
-                <tr>
-                    <td>101</td>
-                    <td>Producto A</td>
-                    <td>25.50</td>
-                    <td>10</td>
-                    <td>1</td>
-                    <td>
-                        <button type="button">Editar</button>
-                        <button type="button">Eliminar</button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </section>
-        <script>
-    function regresar() {
-    window.location.replace("inicio.html");
-    }
+<div class="container">
+    <div>
+        <a th:href="@{/agregarProducto}" class="btn">Agregar Producto</a>
+    </div>
 
-    function ir(pagina) {
-    window.location.href = pagina;
-    }
-</script>
+    <table>
+        <thead>
+        <tr>
+            <th>Codigo de Producto</th>
+            <th>Nombre</th>
+            <th>Precio</th>
+            <th>Stock</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>485</td>
+            <td>Producto 1</td>
+            <td>100.00</td>
+            <td>50</td>
+            <td class="estado-activo">Activo</td>
+            <td class="acciones">
+                <a th:href="@{/editarProducto}" class="btn-editar"><i class="fi fi-rs-pencil"></i></a>
+                <a class="btn-eliminar"><i class="fi fi-rs-trash"></i></a>
+            </td>
+        </tr>
+        <tr>
+            <td>78951</td>
+            <td>Producto 2</td>
+            <td>200.00</td>
+            <td>30</td>
+            <td class="estado-inactivo">Inactivo</td>
+            <td class="acciones">
+                <a th:href="@{/editarProducto}" class="btn-editar"><i class="fi fi-rs-pencil"></i></a>
+                <a class="btn-eliminar"><i class="fi fi-rs-trash"></i></a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
 </body>
 </html>
