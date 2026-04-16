@@ -2,15 +2,13 @@ package com.tiendaConsony.controller;
 
 import com.tiendaConsony.entity.DetalleVenta;
 import com.tiendaConsony.service.DetalleVentaService;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @Controller
-@RequestMapping("/detalleVenta")
+@RequestMapping("/api/detalleVenta")
 public class DetalleVentaController {
 
     private final DetalleVentaService service;
@@ -20,28 +18,32 @@ public class DetalleVentaController {
     }
 
     @GetMapping
+    @ResponseBody
     public List<DetalleVenta> getAll() {
         return service.getAllDetalleVenta();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Object> getById(@PathVariable Integer id) {
-        return new ResponseEntity<>(service.getDetalleVentaById(id), HttpStatus.OK);
+    @ResponseBody
+    public DetalleVenta getById(@PathVariable Integer id) {
+        return service.getDetalleVentaById(id);
     }
 
     @PostMapping
-    public ResponseEntity<Object> create(@RequestBody DetalleVenta detalleVenta) {
-        return new ResponseEntity<>(service.saveDetalleVenta(detalleVenta), HttpStatus.CREATED);
+    @ResponseBody
+    public DetalleVenta create(@RequestBody DetalleVenta detalleVenta) {
+        return service.saveDetalleVenta(detalleVenta);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Object> update(@PathVariable Integer id, @RequestBody DetalleVenta detalleVenta) {
-        return new ResponseEntity<>(service.updateDetalleVenta(id, detalleVenta), HttpStatus.OK);
+    @ResponseBody
+    public DetalleVenta update(@PathVariable Integer id, @RequestBody DetalleVenta detalleVenta) {
+        return service.updateDetalleVenta(id, detalleVenta);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Object> delete(@PathVariable Integer id) {
+    @ResponseBody
+    public void delete(@PathVariable Integer id) {
         service.deleteDetalleVenta(id);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }
