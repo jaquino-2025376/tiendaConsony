@@ -17,13 +17,7 @@ public class Cliente {
     @Column(name = "apellido_cliente")
     private String apellidoCliente;
 
-    @Column(name = "telefono_cliente")
-    private Integer telefonoCliente;
-
-    @Column(name = "correo_cliente")
-    private String correoCliente;
-
-    @Column(name = "direccion_cliente")
+    @Column(name = "direccion")
     private String direccionCliente;
 
     public Integer getCodigoCliente() {
@@ -50,26 +44,9 @@ public class Cliente {
         this.apellidoCliente = apellidoCliente;
     }
 
-    public Integer getTelefonoCliente() {
-        return telefonoCliente;
-    }
-
-    public void setTelefonoCliente(Integer telefonoCliente) {
-        this.telefonoCliente = telefonoCliente;
-    }
-
-    public String getCorreoCliente() {
-        return correoCliente;
-    }
-
-    public void setCorreoCliente(String correoCliente) {
-        this.correoCliente = correoCliente;
-    }
-
     public String getDireccionCliente() {
         return direccionCliente;
     }
-
     public void setDireccionCliente(String direccionCliente) {
         this.direccionCliente = direccionCliente;
     }
