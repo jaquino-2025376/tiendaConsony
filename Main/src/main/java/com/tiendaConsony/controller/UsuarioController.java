@@ -59,7 +59,7 @@ public class UsuarioController {
     public String listar(Model model) {
         List<Usuario> lista = service.listar();
         model.addAttribute("usuarios", lista);
-        return "listar";
+        return "lista";
     }
 
     @GetMapping("/eliminar/{id}")
