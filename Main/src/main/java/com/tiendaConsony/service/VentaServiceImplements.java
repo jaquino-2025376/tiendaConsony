@@ -45,8 +45,8 @@ public class VentaServiceImplements implements VentaService {
 
         updateVenta.setFechaVenta(venta.getFechaVenta());
         updateVenta.setTotalVenta(venta.getTotalVenta());
-        updateVenta.setFkIdCliente(venta.getFkIdCliente());
-        updateVenta.setFkIdUsuario(venta.getFkIdUsuario());
+        updateVenta.setFkCodigoCliente(venta.getFkCodigoCliente());
+        updateVenta.setFkCodigoUsuario(venta.getFkCodigoUsuario());
 
         return ventaRepository.save(updateVenta);
     }
