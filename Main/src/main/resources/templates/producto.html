@@ -76,34 +76,23 @@
                 <th>Nombre</th>
                 <th>Precio</th>
                 <th>Stock</th>
-                <th>Estado</th>
                 <th>Acciones</th>
             </tr>
             </thead>
 
             <tbody>
-            <tr>
-                <td>485</td>
-                <td>Producto 1</td>
-                <td>100.00</td>
-                <td>50</td>
-                <td><span class="estado activo">Activo</span></td>
-                <td>
-                    <a th:href="@{/editarProducto}" class="btn-edit">Editar</a>
-                    <a class="btn-delete">Eliminar</a>
-                </td>
-            </tr>
+            <tr th:each="producto : ${productos}">
 
-            <tr>
-                <td>78951</td>
-                <td>Producto 2</td>
-                <td>200.00</td>
-                <td>30</td>
-                <td><span class="estado inactivo">Inactivo</span></td>
+                <td th:text="${producto.codigoProducto}"></td>
+                <td th:text="${producto.nombreProducto}"></td>
+                <td th:text="${producto.precioProducto}"></td>
+                <td th:text="${producto.stockProducto}"></td>
+
                 <td>
-                    <a th:href="@{/editarProducto}" class="btn-edit">Editar</a>
-                    <a class="btn-delete">Eliminar</a>
+                    <a th:href="@{'/editarProducto/' + ${producto.codigoProducto}}" class="btn-edit">Editar</a>
+                    <a th:href="@{'/eliminarProducto/' + ${producto.codigoProducto}}" class="btn-delete">Eliminar</a>
                 </td>
+
             </tr>
             </tbody>
         </table>
