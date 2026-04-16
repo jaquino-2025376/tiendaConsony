@@ -20,7 +20,7 @@ create table Usuarios (
 );
  
 create table Productos (
-    codigo_producto int primary key,
+    codigo_producto int primary key not null auto_increment,
     nombre_producto varchar(60),
     precio decimal(10,2),
     stock int,
@@ -39,7 +39,7 @@ create table Ventas (
 );
  
 create table Detalle_venta (
-    codigo_detalle_venta int primary key not null,
+    codigo_detalle_venta int primary key not null auto_increment,
     cantidad int,
     precio_unitario decimal(10,2),
     subtotal decimal(10,2),
@@ -48,10 +48,8 @@ create table Detalle_venta (
     foreign key (productos_codigo_producto) references Productos(codigo_producto) on delete cascade,
     foreign key (ventas_codigo_venta) references Ventas(codigo_venta) on delete cascade
 );
- 
- 
+
 -- ======== Procedimientos Almacenados ======== --
- 
  
 -- ===== clientes =====
 delimiter $$
@@ -292,5 +290,3 @@ insert into Detalle_venta values
 (9, 1, 1500.00, 1500.00, 9, 8),
 (10, 1, 900.00, 900.00, 10, 9);
 
-UPDATE usuarios 
-SET contrasena = '1234';
