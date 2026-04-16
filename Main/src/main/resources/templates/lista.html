@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Usuarios</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" th:href="@{/css/styleEntidades.css}">
+</head>
+<body>
+
+<aside class="sidebar">
+    <div class="sidebar-header">
+        <i class="fas fa-store"></i> Tienda Consony
+    </div>
+    <nav>
+        <ul>
+            <li><a th:href="@{/inicio}"><i class="fas fa-chart-line"></i> Inicio</a></li>
+            <li><a th:href="@{/venta}"><i class="fas fa-shopping-cart"></i> Ventas</a></li>
+            <li><a th:href="@{/producto}"><i class="fas fa-box"></i> Productos</a></li>
+            <li><a th:href="@{/cliente}"><i class="fas fa-users"></i> Clientes</a></li>
+            <li><a class="active" th:href="@{/lista}"><i class="fas fa-user-shield"></i> Usuarios</a></li>
+            <li><a th:href="@{/detalleVenta}"><i class="fas fa-file-invoice"></i> Detalle Venta</a></li>
+            <li><a th:href="@{/logout}"><i class="fas fa-sign-out-alt"></i> Cerrar sesión</a></li>
+        </ul>
+    </nav>
+</aside>
+
+<div class="container">
+    <div class="card">
+        <h1>Usuarios</h1>
+        <div class="button-container">
+            <a th:href="@{/registro}" class="btn">Agregar Usuario</a>
+        </div>
+
+        <div class="table-container">
+
+            <table class="tabla-datos">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Username</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr th:each="usuario : ${usuarios}">
+                        <td th:text="${usuario.idUsuario}"></td>
+                        <td th:text="${usuario.username}"></td>
+
+                        <td class="acciones">
+                            <a th:href="@{'/eliminar/' + ${usuario.idUsuario}}" class="btn-eliminar">
+                                <i class="fas fa-trash"></i>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
