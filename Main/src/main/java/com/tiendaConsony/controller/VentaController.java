@@ -26,20 +26,17 @@ public class VentaController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Object> getVentaById(@PathVariable int id) {
-        Venta searchedVenta = service.getVentaById(id);
-        return new ResponseEntity<>(searchedVenta, HttpStatus.OK);
+        return new ResponseEntity<>(service.getVentaById(id), HttpStatus.OK);
     }
 
     @PostMapping
     public ResponseEntity<Object> createVenta(@RequestBody Venta venta) {
-        Venta createdVenta = service.saveVenta(venta);
-        return new ResponseEntity<>(createdVenta, HttpStatus.CREATED);
+        return new ResponseEntity<>(service.saveVenta(venta), HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<Object> updateVenta(@PathVariable int id, @RequestBody Venta venta) {
-        Venta updatedVenta = service.updateVenta(id, venta);
-        return new ResponseEntity<>(updatedVenta, HttpStatus.OK);
+        return new ResponseEntity<>(service.updateVenta(id, venta), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
