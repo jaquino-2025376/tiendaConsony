@@ -15,22 +15,22 @@ public class Venta {
     @Column(name = "fecha_venta")
     private LocalDateTime fechaVenta;
 
-    @Column(name = "total_venta")
+    @Column(name = "total")
     private Double totalVenta;
 
-    @Column(name = "fk_id_cliente")
-    private Integer fkIdCliente;
+    @Column(name = "clientes_codigo_cliente")
+    private Integer fkCodigoCliente;
 
-    @Column(name = "fk_id_usuario")
-    private Integer fkIdUsuario;
+    @Column(name = "usuarios_codigo_usuario")
+    private Integer fkCodigoUsuario;
 
 
-    public Integer getIdVenta() {
+    public Integer getCodigoVenta() {
         return codigoVenta;
     }
 
-    public void setIdVenta(Integer idVenta) {
-        this.codigoVenta = idVenta;
+    public void setCodigoVenta(Integer codigoVenta) {
+        this.codigoVenta = codigoVenta;
     }
 
     public LocalDateTime getFechaVenta() {
@@ -49,19 +49,19 @@ public class Venta {
         this.totalVenta = totalVenta;
     }
 
-    public Integer getFkIdCliente() {
-        return fkIdCliente;
+    public Integer getFkCodigoCliente() {
+        return fkCodigoCliente;
     }
 
-    public void setFkIdCliente(Integer fkIdCliente) {
-        this.fkIdCliente = fkIdCliente;
+    public void setFkCodigoCliente(Integer fkIdCliente) {
+        this.fkCodigoCliente = fkIdCliente;
     }
 
-    public Integer getFkIdUsuario() {
-        return fkIdUsuario;
+    public Integer getFkCodigoUsuario() {
+        return fkCodigoUsuario;
     }
 
-    public void setFkIdUsuario(Integer fkIdUsuario) {
-        this.fkIdUsuario = fkIdUsuario;
+    public void setFkCodigoUsuario(Integer fkIdUsuario) {
+        this.fkCodigoUsuario = fkIdUsuario;
     }
 }
