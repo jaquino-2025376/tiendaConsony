@@ -3,29 +3,29 @@ package com.tiendaConsony.entity;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "Producto")
+@Table(name = "Productos")
 public class Producto {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_producto")
-    private Integer idProducto;
+    @Column(name = "codigo_producto")
+    private Integer codigoProducto;
 
     @Column(name = "nombre_producto")
     private String nombreProducto;
 
-    @Column(name = "precio_producto")
-    private Float precioProducto;
+    @Column(name = "precio")
+    private Float precio;
 
-    @Column(name = "stock_producto")
-    private Integer stockProducto;
+    @Column(name = "stock")
+    private Integer stock;
 
-    public Integer getIdProducto() {
-        return idProducto;
+    public Integer getCodigoProducto() {
+        return codigoProducto;
     }
 
-    public void setIdProducto(Integer idProducto) {
-        this.idProducto = idProducto;
+    public void setCodigoProducto(Integer codigoProducto) {
+        this.codigoProducto = codigoProducto;
     }
 
     public String getNombreProducto() {
@@ -37,18 +37,18 @@ public class Producto {
     }
 
     public Float getPrecioProducto() {
-        return precioProducto;
+        return precio;
     }
 
     public void setPrecioProducto(Float precioProducto) {
-        this.precioProducto = precioProducto;
+        this.precio = precioProducto;
     }
 
     public Integer getStockProducto() {
-        return stockProducto;
+        return stock;
     }
 
     public void setStockProducto(Integer stockProducto) {
-        this.stockProducto = stockProducto;
+        this.stock = stockProducto;
     }
 }
