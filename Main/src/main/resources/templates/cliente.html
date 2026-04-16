@@ -11,7 +11,7 @@
 
 <aside class="sidebar">
     <div class="sidebar-header">
-        <i class="fas fa-store"></i> Sistema Ventas
+        <i class="fas fa-store"></i> Tienda Consony
     </div>
     <nav>
         <ul>
@@ -40,7 +40,7 @@
             </li>
 
             <li>
-                <a th:href="@{/usuario}">
+                <a th:href="@{/lista}">
                     <i class="fas fa-user-shield"></i> Usuarios
                 </a>
             </li>
@@ -61,46 +61,49 @@
 </aside>
 
 <div class="container">
-    <div>
-        <a th:href="@{/agregarCliente}" class="btn">Agregar Cliente</a>
+
+    <div class="card">
+
+        <h1>Clientes</h1>
+        <p>Listado de clientes registrados en el sistema</p>
+
+        <div class="button-container">
+            <a th:href="@{/agregarCliente}" class="btn">Agregar Cliente</a>
+        </div>
+
+        <table class="tabla-datos">
+            <thead>
+            <tr>
+                <th>DPI</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Dirección</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr th:each="cliente : ${clientes}">
+                <td th:text="${cliente.codigoCliente}"></td>
+                <td th:text="${cliente.nombreCliente}"></td>
+                <td th:text="${cliente.apellidoCliente}"></td>
+                <td th:text="${cliente.direccionCliente}"></td>
+
+                <td>
+                    <span class="estado activo">Activo</span>
+                </td>
+
+                <td>
+                    <a th:href="@{'/editarCliente/' + ${cliente.codigoCliente}}" class="btn-edit">Editar</a>
+                    <a th:href="@{'/eliminarCliente/' + ${cliente.codigoCliente}}" class="btn-delete">Eliminar</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
     </div>
 
-    <table>
-        <thead>
-        <tr>
-            <th>DPI</th>
-            <th>Nombre</th>
-            <th>Apellido</th>
-            <th>Dirección</th>
-            <th>Estado</th>
-            <th>Acciones</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td>2145786230010</td>
-            <td>Luis</td>
-            <td>Morales</td>
-            <td>Zona 7, Cuidad Guatemala</td>
-            <td class="estado-activo">Activo</td>
-            <td class="acciones">
-                <a th:href="@{/editarCliente}" class="btn-editar"><i class="fi fi-rs-pencil"></i></a>
-                <a class="btn-eliminar"><i class="fi fi-rs-trash"></i></a>
-            </td>
-        </tr>
-        <tr>
-            <td>7894561234870</td>
-            <td>Carlos</td>
-            <td>Villalobos</td>
-            <td>Trebol</td>
-            <td class="estado-inactivo">Inactivo</td>
-            <td class="acciones">
-                <a th:href="@{/editarCliente}" class="btn-editar"><i class="fi fi-rs-pencil"></i></a>
-                <a class="btn-eliminar"><i class="fi fi-rs-trash"></i></a>
-            </td>
-        </tr>
-        </tbody>
-    </table>
 </div>
 </body>
 </html>
