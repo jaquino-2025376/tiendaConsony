@@ -3,7 +3,7 @@ create database DB_tiendaConsony_in5cm;
 use DB_tiendaConsony_in5cm;
  
 create table Clientes (
-    dpi_cliente int primary key not null,
+    codigo_cliente int primary key not null,
     nombre_cliente varchar(50),
     apellido_cliente varchar(50),
     direccion varchar(100),
@@ -11,9 +11,9 @@ create table Clientes (
 );
  
 create table Usuarios (
-    codigo_usuario int primary key not null,
+    codigo_usuario int primary key auto_increment not null,
     username varchar(45),
-    password varchar(45),
+    contrasena varchar(45),
     email varchar(60),
     rol varchar(45),
     estado int
@@ -32,9 +32,9 @@ create table Ventas (
     fecha_venta date,
     total decimal(10,2),
     estado int,
-    clientes_dpi_cliente int,
+    clientes_codigo_cliente int,
     usuarios_codigo_usuario int,
-    foreign key (clientes_dpi_cliente) references Clientes(dpi_cliente) on delete cascade,
+    foreign key (clientes_codigo_cliente) references Clientes(codigo_cliente) on delete cascade,
     foreign key (usuarios_codigo_usuario) references Usuarios(codigo_usuario) on delete cascade
 );
  
@@ -230,3 +230,67 @@ begin
     delete from Detalle_venta where codigo_detalle_venta = p_codigo;
 end$$
 delimiter ;
+
+-- registros --
+insert into Clientes values
+(1, 'Juan', 'Perez', 'Ciudad de Guatemala', 1),
+(2, 'Maria', 'Lopez', 'Mixco', 1),
+(3, 'Carlos', 'Ramirez', 'Villa Nueva', 1),
+(4, 'Ana', 'Gomez', 'Amatitlán', 1),
+(5, 'Luis', 'Martinez', 'Escuintla', 1),
+(6, 'Sofia', 'Hernandez', 'Antigua', 1),
+(7, 'Pedro', 'Castillo', 'Quetzaltenango', 1),
+(8, 'Lucia', 'Morales', 'Petén', 1),
+(9, 'Diego', 'Alvarez', 'Chimaltenango', 1),
+(10, 'Elena', 'Torres', 'Santa Rosa', 1);
+
+insert into Usuarios values
+(1, 'admin', '1234', 'admin@mail.com', 'ADMIN', 1),
+(2, 'user1', '1234', 'user1@mail.com', 'USER', 1),
+(3, 'user2', '1234', 'user2@mail.com', 'USER', 1),
+(4, 'user3', '1234', 'user3@mail.com', 'USER', 1),
+(5, 'user4', '1234', 'user4@mail.com', 'USER', 1),
+(6, 'user5', '1234', 'user5@mail.com', 'USER', 1),
+(7, 'user6', '1234', 'user6@mail.com', 'USER', 1),
+(8, 'user7', '1234', 'user7@mail.com', 'USER', 1),
+(9, 'user8', '1234', 'user8@mail.com', 'USER', 1),
+(10, 'user9', '1234', 'user9@mail.com', 'USER', 1);
+
+insert into Productos values
+(1, 'Laptop', 5500.00, 10, 1),
+(2, 'Mouse', 50.00, 100, 1),
+(3, 'Teclado', 150.00, 50, 1),
+(4, 'Monitor', 1200.00, 20, 1),
+(5, 'Audifonos', 200.00, 40, 1),
+(6, 'USB 32GB', 60.00, 80, 1),
+(7, 'Disco Duro', 800.00, 15, 1),
+(8, 'Webcam', 300.00, 25, 1),
+(9, 'Silla Gamer', 1500.00, 10, 1),
+(10, 'Impresora', 900.00, 12, 1);
+
+insert into Ventas values
+(1, '2026-01-10', 5550.00, 1, 1, 1),
+(2, '2026-01-11', 150.00, 1, 2, 2),
+(3, '2026-01-12', 1200.00, 1, 3, 3),
+(4, '2026-01-13', 200.00, 1, 4, 4),
+(5, '2026-01-14', 60.00, 1, 5, 5),
+(6, '2026-01-15', 800.00, 1, 6, 6),
+(7, '2026-01-16', 300.00, 1, 7, 7),
+(8, '2026-01-17', 1500.00, 1, 8, 8),
+(9, '2026-01-18', 900.00, 1, 9, 9),
+(10, '2026-01-19', 50.00, 1, 10, 10);
+
+insert into Detalle_venta values
+(1, 1, 5500.00, 5500.00, 1, 1),
+(2, 1, 50.00, 50.00, 2, 1),
+(3, 1, 150.00, 150.00, 3, 2),
+(4, 1, 1200.00, 1200.00, 4, 3),
+(5, 1, 200.00, 200.00, 5, 4),
+(6, 1, 60.00, 60.00, 6, 5),
+(7, 1, 800.00, 800.00, 7, 6),
+(8, 1, 300.00, 300.00, 8, 7),
+(9, 1, 1500.00, 1500.00, 9, 8),
+(10, 1, 900.00, 900.00, 10, 9);
+
+UPDATE usuarios 
+SET contrasena = '1234';
