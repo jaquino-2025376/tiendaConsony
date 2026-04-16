@@ -5,13 +5,14 @@ import com.tiendaConsony.entity.Cliente;
 import com.tiendaConsony.service.ClienteService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
-@RequestMapping("/api/clientes")
+@Controller
+@RequestMapping("/clientes")
 public class ClienteController {
     public final ClienteService clienteService;
 
