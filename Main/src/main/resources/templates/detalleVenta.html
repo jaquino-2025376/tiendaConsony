@@ -11,7 +11,7 @@
 <body>
 <aside class="sidebar">
     <div class="sidebar-header">
-        <i class="fas fa-store"></i> Sistema Ventas
+        <i class="fas fa-store"></i> Tienda Consony
     </div>
     <nav>
         <ul>
@@ -40,7 +40,7 @@
             </li>
 
             <li>
-                <a th:href="@{/usuario}">
+                <a th:href="@{/lista}">
                     <i class="fas fa-user-shield"></i> Usuarios
                 </a>
             </li>
@@ -61,52 +61,63 @@
 </aside>
 
 <div class="container">
-    <div>
-        <a th:href="@{/agregarCliente}" class="btn">Agregar Cliente</a>
+
+    <div class="card">
+
+        <h1>Detalle de Ventas</h1>
+        <p>Listado de detalles de cada venta registrada</p>
+
+        <div class="button-container">
+            <a th:href="@{/agregarDetalleVenta}" class="btn">Agregar Detalle</a>
+        </div>
+
+        <table class="tabla-datos">
+            <thead>
+            <tr>
+                <th>Código Detalle</th>
+                <th>Cantidad</th>
+                <th>Precio Unitario</th>
+                <th>Sub Total</th>
+                <th>DPI Cliente</th>
+                <th>Código Producto</th>
+                <th>Código Venta</th>
+                <th>Acciones</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr>
+                <td>456</td>
+                <td>2</td>
+                <td>150.00</td>
+                <td>300.00</td>
+                <td>2145786230010</td>
+                <td>1</td>
+                <td>4112223</td>
+                <td>
+                    <a th:href="@{/editarDetalleVenta}" class="btn-edit">Editar</a>
+                    <a class="btn-delete">Eliminar</a>
+                </td>
+            </tr>
+
+            <tr>
+                <td>896</td>
+                <td>1</td>
+                <td>200.00</td>
+                <td>200.00</td>
+                <td>7894561234870</td>
+                <td>2</td>
+                <td>4112223</td>
+                <td>
+                    <a th:href="@{/editarDetalleVenta}" class="btn-edit">Editar</a>
+                    <a class="btn-delete">Eliminar</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
     </div>
 
-    <table>
-        <thead>
-        <tr>
-            <th>Codigo Detalle de venta</th>
-            <th>Cantidad</th>
-            <th>Precio Unitario</th>
-            <th>Sub Total</th>
-            <th>DPI de Cliente</th>
-            <th>Codigo de Producto</th>
-            <th>Codigo de Venta</th>
-            <th>Acciones</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td>456</td>
-            <td>2</td>
-            <td>150.00</td>
-            <td>300.00</td>
-            <td>2145786230010</td>
-            <td>1</td>
-            <td>4112223</td>
-            <td class="acciones">
-                <a th:href="@{/editarVenta}" class="btn-editar"><i class="fi fi-rs-pencil"></i></a>
-                <a class="btn-eliminar"><i class="fi fi-rs-trash"></i></a>
-            </td>
-        </tr>
-        <tr>
-            <td>896</td>
-            <td>1</td>
-            <td>200.00</td>
-            <td>200.00</td>
-            <td>7894561234870</td>
-            <td>2</td>
-            <td>4112223</td>
-            <td class="acciones">
-                <a th:href="@{/editarVenta}" class="btn-editar"><i class="fi fi-rs-pencil"></i></a>
-                <a class="btn-eliminar"><i class="fi fi-rs-trash"></i></a>
-            </td>
-        </tr>
-        </tbody>
-    </table>
 </div>
 </body>
 </html>
