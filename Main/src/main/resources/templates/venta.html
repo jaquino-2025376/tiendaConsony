@@ -76,40 +76,24 @@
                 <th>Codigo de venta</th>
                 <th>Fecha de venta</th>
                 <th>Total</th>
-                <th>Estado</th>
-                <th>DPI de Cliente</th>
+                <th>Codigo de Cliente</th>
                 <th>Codigo de Usuario</th>
                 <th>Acciones</th>
             </tr>
             </thead>
 
-            <tbody>
-            <tr>
-                <td>4112223</td>
-                <td>2023-10-01</td>
-                <td>150.00</td>
-                <td><span class="estado activo">Activo</span></td>
-                <td>2145786230010</td>
-                <td>1</td>
-                <td>
-                    <a th:href="@{/editarVenta}" class="btn-edit">Editar</a>
-                    <a class="btn-delete">Eliminar</a>
-                </td>
-            </tr>
+            <tr th:each="venta : ${ventas}">
+                <td th:text="${venta.codigoVenta}"></td>
+                <td th:text="${venta.fechaVenta}"></td>
+                <td th:text="${venta.totalVenta}"></td>
+                <td th:text="${venta.fkCodigoCliente}"></td>
+                <td th:text="${venta.fkCodigoUsuario}"></td>
 
-            <tr>
-                <td>78951</td>
-                <td>2023-10-02</td>
-                <td>200.00</td>
-                <td><span class="estado inactivo">Inactivo</span></td>
-                <td>7894561234870</td>
-                <td>2</td>
                 <td>
-                    <a th:href="@{/editarVenta}" class="btn-edit">Editar</a>
-                    <a class="btn-delete">Eliminar</a>
+                    <a th:href="@{'/editarVenta/' + ${venta.codigoVenta}}" class="btn-edit">Editar</a>
+                    <a th:href="@{'/eliminarVenta/' + ${venta.codigoVenta}}" class="btn-delete">Eliminar</a>
                 </td>
             </tr>
-            </tbody>
         </table>
 
     </div>
