@@ -1,61 +1,31 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Detalle de Ventas</title>
+
     <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-regular-straight/css/uicons-regular-straight.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" th:href="@{/css/styleEntidades.css}">
 </head>
+
 <body>
+
 <aside class="sidebar">
     <div class="sidebar-header">
         <i class="fas fa-store"></i> Tienda Consony
     </div>
+
     <nav>
         <ul>
-            <li>
-                <a class="active" th:href="@{/inicio}">
-                    <i class="fas fa-chart-line"></i> Inicio
-                </a>
-            </li>
-
-            <li>
-                <a th:href="@{/venta}">
-                    <i class="fas fa-shopping-cart"></i> Ventas
-                </a>
-            </li>
-
-            <li>
-                <a th:href="@{/producto}">
-                    <i class="fas fa-box"></i> Productos
-                </a>
-            </li>
-
-            <li>
-                <a th:href="@{/cliente}">
-                    <i class="fas fa-users"></i> Clientes
-                </a>
-            </li>
-
-            <li>
-                <a th:href="@{/lista}">
-                    <i class="fas fa-user-shield"></i> Usuarios
-                </a>
-            </li>
-
-            <li>
-                <a th:href="@{/detalleVenta}">
-                    <i class="fas fa-file-invoice"></i> Detalle Venta
-                </a>
-            </li>
-
-            <li>
-                <a th:href="@{/logout}">
-                    <i class="fas fa-sign-out-alt"></i> Cerrar sesión
-                </a>
-            </li>
+            <li><a th:href="@{/inicio}"><i class="fas fa-chart-line"></i> Inicio</a></li>
+            <li><a th:href="@{/venta}"><i class="fas fa-shopping-cart"></i> Ventas</a></li>
+            <li><a th:href="@{/producto}"><i class="fas fa-box"></i> Productos</a></li>
+            <li><a th:href="@{/cliente}"><i class="fas fa-users"></i> Clientes</a></li>
+            <li><a th:href="@{/lista}"><i class="fas fa-user-shield"></i> Usuarios</a></li>
+            <li><a class="active" th:href="@{/detalleVentas}"><i class="fas fa-file-invoice"></i> Detalle Venta</a></li>
+            <li><a th:href="@{/logout}"><i class="fas fa-sign-out-alt"></i> Cerrar sesión</a></li>
         </ul>
     </nav>
 </aside>
@@ -77,8 +47,7 @@
                 <th>Código Detalle</th>
                 <th>Cantidad</th>
                 <th>Precio Unitario</th>
-                <th>Sub Total</th>
-                <th>DPI Cliente</th>
+                <th>Subtotal</th>
                 <th>Código Producto</th>
                 <th>Código Venta</th>
                 <th>Acciones</th>
@@ -86,38 +55,28 @@
             </thead>
 
             <tbody>
-            <tr>
-                <td>456</td>
-                <td>2</td>
-                <td>150.00</td>
-                <td>300.00</td>
-                <td>2145786230010</td>
-                <td>1</td>
-                <td>4112223</td>
-                <td>
-                    <a th:href="@{/editarDetalleVenta}" class="btn-edit">Editar</a>
-                    <a class="btn-delete">Eliminar</a>
-                </td>
-            </tr>
+            <tr th:each="detalle : ${detalles}">
 
-            <tr>
-                <td>896</td>
-                <td>1</td>
-                <td>200.00</td>
-                <td>200.00</td>
-                <td>7894561234870</td>
-                <td>2</td>
-                <td>4112223</td>
+                <td th:text="${detalle.codigoDetalleVenta}"></td>
+                <td th:text="${detalle.cantidad}"></td>
+                <td th:text="${detalle.precioUnitario}"></td>
+                <td th:text="${detalle.subtotal}"></td>
+                <td th:text="${detalle.productoId}"></td>
+                <td th:text="${detalle.ventaId}"></td>
+
                 <td>
-                    <a th:href="@{/editarDetalleVenta}" class="btn-edit">Editar</a>
-                    <a class="btn-delete">Eliminar</a>
+                    <a th:href="@{'/editarDetalleVenta/' + ${detalle.codigoDetalleVenta}}" class="btn-edit">Editar</a>
+                    <a th:href="@{'/eliminarDetalleVenta/' + ${detalle.codigoDetalleVenta}}" class="btn-delete">Eliminar</a>
                 </td>
+
             </tr>
             </tbody>
+
         </table>
 
     </div>
 
 </div>
+
 </body>
 </html>
