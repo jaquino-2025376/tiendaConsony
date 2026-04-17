@@ -1,25 +1,18 @@
 package com.tiendaConsony.controller;
 
+import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/inicio")
 public class InicioController {
-    @GetMapping
-    public String mostrarInicio(){
+
+    @GetMapping("/inicio")
+    public String mostrarInicio(Model model, HttpSession session) {
+        model.addAttribute("usuarioSesion", session.getAttribute("usuarioSesion"));
+        model.addAttribute("rolSesion",     session.getAttribute("rolSesion"));
+        model.addAttribute("fotoSesion",    session.getAttribute("fotoSesion"));
         return "inicio";
     }
-
-    @GetMapping("/inicio-cliente")
-    public String mostrarCliente(){
-        return "cliente";
-    }
-
-    @GetMapping("/cerrar-sesion")
-    public String cerrarSesion(){
-        return ("redirect:/login");
-    }
 }
-
