@@ -3,9 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Registro</title>
-
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
-
     <style>
         body {
             height: 100vh;
@@ -15,16 +13,14 @@
             align-items: center;
             font-family: 'Poppins', sans-serif;
         }
-
         .card {
             display: flex;
-            width: 700px;
+            width: 720px;
             background: white;
             border-radius: 20px;
             overflow: hidden;
             box-shadow: 0 10px 30px rgba(0,0,0,0.3);
         }
-
         .left {
             width: 40%;
             background: linear-gradient(135deg, #4CAF50, #2ecc71);
@@ -32,25 +28,22 @@
             justify-content: center;
             align-items: center;
         }
-
-        .left img {
-            width: 120px;
-        }
-
+        .left img { width: 120px; }
         .right {
             width: 60%;
             padding: 40px;
             text-align: center;
         }
-
-        input {
+        input, select {
             width: 100%;
             padding: 12px;
             margin-bottom: 15px;
             border-radius: 10px;
             border: 1px solid #ccc;
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px;
+            box-sizing: border-box;
         }
-
         button {
             width: 100%;
             padding: 12px;
@@ -61,55 +54,48 @@
             font-weight: bold;
             cursor: pointer;
         }
-
-        .switch {
-            margin-top: 15px;
-        }
-
-        .switch a {
-            text-decoration: none;
-            color: #2575fc;
-            font-size: 14px;
-        }
-
-        .success {
-            background: #4CAF50;
+        .switch { margin-top: 15px; }
+        .switch a { text-decoration: none; color: #2575fc; font-size: 14px; }
+        .error {
+            background: #ff4b5c;
             color: white;
             padding: 10px;
             border-radius: 8px;
             margin-bottom: 10px;
         }
+        label { display: block; text-align: left; font-size: 13px; font-weight: 600; color: #334155; margin-bottom: 4px; }
     </style>
 </head>
 <body>
-
 <div class="card">
-
     <div class="left">
         <img src="https://cdn-icons-png.flaticon.com/512/1828/1828817.png" alt="Icono de registro">
     </div>
-
     <div class="right">
-
         <h2>Registro</h2>
-
-        <div th:if="${success}" class="success">
-            <span th:text="${success}"></span>
+        <div th:if="${error}" class="error">
+            <span th:text="${error}"></span>
         </div>
-
         <form th:action="@{/registro}" method="post">
-            <input type="text" name="username" placeholder="Usuario" required>
-            <input type="password" name="contrasena" placeholder="Contraseña" required>
+            <label for="username">Usuario</label>
+            <input type="text" id="username" name="username" placeholder="Nombre de usuario" required>
+
+            <label for="contrasena">Contraseña</label>
+            <input type="password" id="contrasena" name="contrasena" placeholder="Contraseña" required>
+
+            <label for="rol">Rol</label>
+            <select id="rol" name="rol">
+                <option value="ADMIN">ADMIN</option>
+                <option value="VENDEDOR" selected>VENDEDOR</option>
+                <option value="CLIENTE">CLIENTE</option>
+            </select>
+
             <button type="submit">Registrarse</button>
         </form>
-
         <div class="switch">
             <a th:href="@{/login}">¿Ya tienes cuenta? Inicia sesión</a>
         </div>
-
     </div>
-
 </div>
-
 </body>
 </html>
