@@ -18,23 +18,26 @@ public class UsuarioServiceImplements implements UsuarioService {
     }
 
     @Override
-    public Usuario registrar(String username, String contrasena){
-        if (repository.findByUsername(username) != null){
+    public Usuario registrar(String username, String contrasena) {
+        return registrar(username, contrasena, "VENDEDOR");
+    }
+
+    @Override
+    public Usuario registrar(String username, String contrasena, String rol) {
+        if (repository.findByUsername(username) != null) {
             return null;
         }
-
         Usuario u = new Usuario();
         u.setUsername(username);
         u.setContrasena(contrasena);
-
+        u.setRol(rol != null ? rol : "VENDEDOR");
         return repository.save(u);
     }
 
     @Override
     public Usuario login(String username, String contrasena) {
         Usuario u = repository.findByUsername(username);
-
-        if (u != null && u.getContrasena().equals(contrasena)){
+        if (u != null && u.getContrasena().equals(contrasena)) {
             return u;
         }
         return null;
