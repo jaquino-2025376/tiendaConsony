@@ -1,68 +1,31 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Inicio</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" th:href="@{/css/styleInicio.css}">
+    <link rel="stylesheet" th:href="@{/css/styleForms.css}">
 </head>
-<body>
-
+<body class="with-header">
+<div th:replace="~{fragments/headerRoles :: headerRoles}"></div>
 <aside class="sidebar">
-    <div class="sidebar-header">
-        <i class="fas fa-store"></i> TIENDA CONSONY
-    </div>
-    <nav>
-        <ul>
-            <li>
-                <a class="active" th:href="@{/inicio}">
-                    <i class="fas fa-chart-line"></i> Inicio
-                </a>
-            </li>
-
-            <li>
-                <a th:href="@{/venta}">
-                    <i class="fas fa-shopping-cart"></i> Ventas
-                </a>
-            </li>
-
-            <li>
-                <a th:href="@{/producto}">
-                    <i class="fas fa-box"></i> Productos
-                </a>
-            </li>
-
-            <li>
-                <a th:href="@{/cliente}">
-                    <i class="fas fa-users"></i> Clientes
-                </a>
-            </li>
-
-            <li>
-                <a th:href="@{/lista}">
-                    <i class="fas fa-user-shield"></i> Usuarios
-                </a>
-            </li>
-
-            <li>
-                <a th:href="@{/detalleVenta}">
-                    <i class="fas fa-file-invoice"></i> Detalle Venta
-                </a>
-            </li>
-
-            <li>
-                <a th:href="@{/logout}">
-                    <i class="fas fa-sign-out-alt"></i> Cerrar sesión
-                </a>
-            </li>
-        </ul>
-    </nav>
+    <div class="sidebar-header"><i class="fas fa-store"></i> TIENDA CONSONY</div>
+    <nav><ul>
+        <li><a class="active" th:href="@{/inicio}"><i class="fas fa-chart-line"></i> Inicio</a></li>
+        <li><a th:href="@{/venta}"><i class="fas fa-shopping-cart"></i> Ventas</a></li>
+        <li><a th:href="@{/producto}"><i class="fas fa-box"></i> Productos</a></li>
+        <li><a th:href="@{/cliente}"><i class="fas fa-users"></i> Clientes</a></li>
+        <li><a th:href="@{/lista}"><i class="fas fa-user-shield"></i> Usuarios</a></li>
+        <li><a th:href="@{/detalleVenta}"><i class="fas fa-file-invoice"></i> Detalle Venta</a></li>
+        <li><a th:href="@{/logout}"><i class="fas fa-sign-out-alt"></i> Cerrar sesión</a></li>
+    </ul></nav>
 </aside>
-
-<div class="card">
-    <h1>Bienvenidos a la pagina principal</h1>
-    <p>Este es el menu principal de donde se controla todo</p>
+<div class="container">
+    <div class="card">
+        <h1>Bienvenido, <span th:text="${usuarioSesion != null ? usuarioSesion.username : 'Usuario'}">Usuario</span></h1>
+        <p>Este es el menú principal desde donde se controla todo</p>
+    </div>
 </div>
-
 </body>
 </html>
