@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<header th:fragment="headerRoles" class="top-header">
+    <div class="user-info">
+        <div class="user-details">
+            <span class="user-name" th:text="${usuarioSesion != null ? usuarioSesion.username : 'Usuario'}">Usuario</span>
+            <span class="role-badge"
+                  th:classappend="${'role-' + (rolSesion != null ? rolSesion : 'CLIENTE')}"
+                  th:text="${rolSesion != null ? rolSesion : 'SIN ROL'}">ROL</span>
+        </div>
+        <img class="user-photo"
+             th:src="@{'/img/usuarios/' + ${fotoSesion != null ? fotoSesion : 'default.png'}}"
+             alt="Foto usuario"
+             onerror="this.src='https://cdn-icons-png.flaticon.com/512/3135/3135715.png'">
+    </div>
+</header>
+
+</html>
