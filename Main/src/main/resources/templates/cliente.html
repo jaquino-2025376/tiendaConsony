@@ -1,109 +1,53 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Clientes</title>
-    <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-regular-straight/css/uicons-regular-straight.css">
+    <meta charset="UTF-8"><title>Clientes</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" th:href="@{/css/styleEntidades.css}">
+    <link rel="stylesheet" th:href="@{/css/styleForms.css}">
 </head>
-<body>
-
+<body class="with-header">
+<div th:replace="~{fragments/headerRoles :: headerRoles}"></div>
 <aside class="sidebar">
-    <div class="sidebar-header">
-        <i class="fas fa-store"></i> Tienda Consony
-    </div>
-    <nav>
-        <ul>
-            <li>
-                <a class="active" th:href="@{/inicio}">
-                    <i class="fas fa-chart-line"></i> Inicio
-                </a>
-            </li>
-
-            <li>
-                <a th:href="@{/venta}">
-                    <i class="fas fa-shopping-cart"></i> Ventas
-                </a>
-            </li>
-
-            <li>
-                <a th:href="@{/producto}">
-                    <i class="fas fa-box"></i> Productos
-                </a>
-            </li>
-
-            <li>
-                <a th:href="@{/cliente}">
-                    <i class="fas fa-users"></i> Clientes
-                </a>
-            </li>
-
-            <li>
-                <a th:href="@{/lista}">
-                    <i class="fas fa-user-shield"></i> Usuarios
-                </a>
-            </li>
-
-            <li>
-                <a th:href="@{/detalleVenta}">
-                    <i class="fas fa-file-invoice"></i> Detalle Venta
-                </a>
-            </li>
-
-            <li>
-                <a th:href="@{/logout}">
-                    <i class="fas fa-sign-out-alt"></i> Cerrar sesión
-                </a>
-            </li>
-        </ul>
-    </nav>
+    <div class="sidebar-header"><i class="fas fa-store"></i> Tienda Consony</div>
+    <nav><ul>
+        <li><a th:href="@{/inicio}"><i class="fas fa-chart-line"></i> Inicio</a></li>
+        <li><a th:href="@{/venta}"><i class="fas fa-shopping-cart"></i> Ventas</a></li>
+        <li><a th:href="@{/producto}"><i class="fas fa-box"></i> Productos</a></li>
+        <li><a class="active" th:href="@{/cliente}"><i class="fas fa-users"></i> Clientes</a></li>
+        <li><a th:href="@{/lista}"><i class="fas fa-user-shield"></i> Usuarios</a></li>
+        <li><a th:href="@{/detalleVenta}"><i class="fas fa-file-invoice"></i> Detalle Venta</a></li>
+        <li><a th:href="@{/logout}"><i class="fas fa-sign-out-alt"></i> Cerrar sesión</a></li>
+    </ul></nav>
 </aside>
-
 <div class="container">
-
     <div class="card">
-
         <h1>Clientes</h1>
         <p>Listado de clientes registrados en el sistema</p>
-
         <div class="button-container">
             <a th:href="@{/agregarCliente}" class="btn">Agregar Cliente</a>
         </div>
-
         <table class="tabla-datos">
             <thead>
-            <tr>
-                <th>DPI</th>
-                <th>Nombre</th>
-                <th>Apellido</th>
-                <th>Dirección</th>
-                <th>Estado</th>
-                <th>Acciones</th>
-            </tr>
+                <tr>
+                    <th>Código</th><th>Nombre</th><th>Apellido</th><th>Dirección</th><th>Acciones</th>
+                </tr>
             </thead>
-
             <tbody>
-            <tr th:each="cliente : ${clientes}">
-                <td th:text="${cliente.codigoCliente}"></td>
-                <td th:text="${cliente.nombreCliente}"></td>
-                <td th:text="${cliente.apellidoCliente}"></td>
-                <td th:text="${cliente.direccionCliente}"></td>
-
-                <td>
-                    <span class="estado activo">Activo</span>
-                </td>
-
-                <td>
-                    <a th:href="@{'/editarCliente/' + ${cliente.codigoCliente}}" class="btn-edit">Editar</a>
-                    <a th:href="@{'/eliminarCliente/' + ${cliente.codigoCliente}}" class="btn-delete">Eliminar</a>
-                </td>
-            </tr>
+                <tr th:each="cliente : ${clientes}">
+                    <td th:text="${cliente.codigoCliente}"></td>
+                    <td th:text="${cliente.nombreCliente}"></td>
+                    <td th:text="${cliente.apellidoCliente}"></td>
+                    <td th:text="${cliente.direccionCliente}"></td>
+                    <td>
+                        <a th:href="@{'/editarCliente/' + ${cliente.codigoCliente}}" class="btn-edit">Editar</a>
+                        <a th:href="@{'/eliminarCliente/' + ${cliente.codigoCliente}}" class="btn-delete"
+                           onclick="return confirm('¿Eliminar este cliente?')">Eliminar</a>
+                    </td>
+                </tr>
             </tbody>
         </table>
-
     </div>
-
 </div>
 </body>
 </html>
